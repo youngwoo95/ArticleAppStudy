@@ -1,0 +1,55 @@
+﻿@inherits LayoutComponentBase
+
+@inject NavigationManager NavigationManager
+
+
+<PageTitle>ArticleStudy</PageTitle>
+
+<div class="page">
+    <main>
+        <div class="top-row px-4" style="background-color:#232323">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="margin: 0 auto;">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="btnradio1" @onchange="OnRadioButtonClick" checked>
+                <label class="btn btn-danger oi oi-home" for="btnradio1"> Menu 1</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="btnradio2" @onchange="OnRadioButtonClick">
+                <label class="btn btn-danger" for="btnradio2">Menu 2</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="btnradio3" @onchange="OnRadioButtonClick">
+                <label class="btn btn-danger" for="btnradio3">Menu 3</label>
+            </div>
+        </div>
+
+        <article class="content px-4;" style="height:90vh">
+            @Body
+        </article>
+    </main>
+</div>
+
+
+
+@code{
+    
+  
+
+    string selectedValue = string.Empty;
+
+    private void OnRadioButtonClick(ChangeEventArgs e)
+    {
+        selectedValue = e.Value.ToString();
+
+        switch (selectedValue)
+        {
+            case "btnradio1":
+                NavigationManager.NavigateTo("/Articles");
+                break;
+            case "btnradio2":
+                NavigationManager.NavigateTo("/counter");
+                break;
+            case "btnradio3":
+                Console.WriteLine("3번체크");
+                break;
+        }
+    }
+
+}
